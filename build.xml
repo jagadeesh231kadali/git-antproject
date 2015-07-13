@@ -1,0 +1,31 @@
+<?xml version="1.0" ?> 
+<project name="HelloWorld" default="compress">
+<property file="import.properties"  />
+
+	  <target name="init">
+		<mkdir dir="build/classes" />
+		<mkdir dir="dist" />
+	
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="src" destdir="build/classes" />
+	</target>
+	
+	<target name="compress" depends="compile">
+	        <jar destfile="dist/HelloWorld.jar" basedir="build/classes" />
+			<echo message="section : ${section}" />
+		<echo message="room :${room}" />
+		<echo message="rollnum :${rollnum}" />
+	</target>
+	
+	<target name="execute" depends="compile">
+		<java classname="com.vaannila.helloworld.HelloWorld" classpath="build/classes" />
+	</target>
+
+	<target name="clean">
+		<delete dir="build" />
+		<delete dir="dist" />
+	</target>
+	
+</project>
